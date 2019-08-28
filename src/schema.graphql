@@ -3,13 +3,15 @@ type Query {
   posts(query: String): [Post!]!
   comments: [Comment!]!
   me: User!
-  post: Post!
+  post(id: ID!): Post!
 }
 
 type Mutation {
-  createUser(data: CreateUserInput!): User!
-  deleteUser(id: ID!): User!
-  updateUser(id: ID!, data: UpdateUserInput!): User!
+  login(data: LoginUserInput!): AuthPayload!
+
+  createUser(data: CreateUserInput!): AuthPayload!
+  deleteUser: User!
+  updateUser(data: UpdateUserInput!): User!
 
   createPost(data: CreatePostInput!): Post!
   deletePost(id: ID!): Post!
@@ -23,6 +25,11 @@ type Mutation {
 type Subscription {
   comment(postId: ID!): CommentSubscriptionPayload!
   post: PostSubscriptionPayload!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
 }
 
 input CreateUserInput {
@@ -40,7 +47,6 @@ input CreatePostInput {
   title: String!
   body: String!
   published: Boolean!
-  author: ID!
 }
 
 input UpdatePostInput {
@@ -51,7 +57,6 @@ input UpdatePostInput {
 
 input CreateCommentInput {
   text: String!
-  author: ID!
   post: ID!
 }
 
@@ -88,6 +93,11 @@ enum MutationType {
   CREATED
   UPDATED
   DELETED
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
 }
 
 type PostSubscriptionPayload {
