@@ -11,7 +11,6 @@ const server = new GraphQLServer({
   resolvers,
   context (request) {
     return {
-      db,
       pubsub,
       prisma,
       request
