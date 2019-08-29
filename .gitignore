@@ -2,3 +2,6 @@ node_modules
 prisma/docker-compose.yml
 
 client/node_modules
+
+config/prod.env
+dist
