@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs"
-import jwt from "jsonwebtoken"
 
 import getUserId from "../utils/getUserId"
+import generateToken from "../utils/generateToken"
 
 const Mutation = {
   // AUTH
@@ -21,7 +21,7 @@ const Mutation = {
 
     return {
       user,
-      token: jwt.sign({ userId: user.id }, 'somesecret')
+      token: generateToken(user.id)
     }
   },
   // USER
@@ -40,7 +40,7 @@ const Mutation = {
 
     return {
       user,
-      token: jwt.sign({ userId: user.id }, 'somesecret')
+      token: generateToken(user.id)
     }
   },
   //
