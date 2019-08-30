@@ -107,6 +107,27 @@ const deleteComment = gql`
   }
 `
 
+// SUBSCRIPTIONS OPERATIONS
+//
+const subscribeToComments = gql`
+  subscription($postId: ID!) {
+    comment(postId: $postId) {
+      mutation
+      node {
+        id
+        text
+      }
+    }
+  }
+`
+const subscribeToPosts = gql`
+  subscription {
+    post {
+      mutation
+    }
+  }
+`
+
 export {
   createUser,
   login,
@@ -119,5 +140,8 @@ export {
   createPost,
   deletePost,
 
-  deleteComment
+  deleteComment,
+
+  subscribeToComments,
+  subscribeToPosts
 }
