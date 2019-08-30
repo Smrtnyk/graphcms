@@ -1,6 +1,7 @@
-require('@babel/register')
-require('core-js')
-require('regenerator-runtime/runtime')
+//require('@babel/register')
+//require('@babel/polyfill')
+//require('core-js')
+//require('regenerator-runtime/runtime')
 
 const server = require('../../src/server').default
 
